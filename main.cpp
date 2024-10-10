@@ -59,11 +59,11 @@ void free_data() {
   delete[] dens_prev;
 }
 
-// Apply events (source or force) for the current timestep
+// Apply events (source or force) for the current timestep - Aplicar eventos (origem ou força) para o carimbo de data/hora atual
 void apply_events(const std::vector<Event> &events) {
   for (const auto &event : events) {
     if (event.type == ADD_SOURCE) {
-      // Apply density source at the center of the grid
+      // Apply density source at the center of the grid - Aplicar fonte de densidade no centro da grade
       int i = M / 2, j = N / 2, k = O / 2;
       dens[IX(i, j, k)] = event.density;
     } else if (event.type == APPLY_FORCE) {
@@ -86,10 +86,11 @@ float sum_density() {
   return total_density;
 }
 
-// Simulation loop
+// Simulation loop - Loop de simulação
 void simulate(EventManager &eventManager, int timesteps) {
+  // For para cade evento
   for (int t = 0; t < timesteps; t++) {
-    // Get the events for the current timestep
+    // Get the events for the current timestep - Obter os eventos para o carimbo de eventp atual
     std::vector<Event> events = eventManager.get_events_at_timestamp(t);
 
     // Apply events to the simulation
@@ -102,12 +103,12 @@ void simulate(EventManager &eventManager, int timesteps) {
 }
 
 int main() {
-  // Initialize EventManager
+  // Initialize EventManager - Inicializar o EventManager
   EventManager eventManager;
-  eventManager.read_events("events.txt");
+  eventManager.read_events("events.txt"); // Le  e armazena os eventos do arquivo events.txt
 
   // Get the total number of timesteps from the event file
-  int timesteps = eventManager.get_total_timesteps();
+  int timesteps = eventManager.get_total_timesteps(); // Obtem o número total de etapas do arquivo de eventos
 
   // Allocate and clear data
   if (!allocate_data())

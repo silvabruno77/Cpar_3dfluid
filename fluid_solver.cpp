@@ -1,7 +1,7 @@
 #include "fluid_solver.h"
 #include <cmath>
 
-#define IX(i, j, k) ((i) + (M + 2) * (j) + (M + 2) * (N + 2) * (k))
+#define IX(i, j, k) ((i) + (M + 2) * (j) + (M + 2) * (N + 2) * (k)) // Indexing function - Função de indexação
 #define SWAP(x0, x)                                                            \
   {                                                                            \
     float *tmp = x0;                                                           \
@@ -126,9 +126,10 @@ void advect(int M, int N, int O, int b, float *d, float *d0, float *u, float *v,
 }
 
 // Projection step to ensure incompressibility (make the velocity field
-// divergence-free)
+// divergence-free) - 
 void project(int M, int N, int O, float *u, float *v, float *w, float *p,
              float *div) {
+              
   for (int i = 1; i <= M; i++) {
     for (int j = 1; j <= N; j++) {
       for (int k = 1; k <= O; k++) {
